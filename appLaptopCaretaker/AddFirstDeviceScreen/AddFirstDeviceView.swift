@@ -7,13 +7,17 @@ class AddFirstDeviceView: UIView {
         $0.numberOfLines = 0
     }
     
-    let typeTextField = CustomInputView(placeholder: "Type")
+    let typeTextField = CustomInputView(placeholder: "Type").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
     let deviceNameTextField = CustomInputView(placeholder: "Device Name")
     
     let modelTextField = CustomInputView(placeholder: "Model")
     
-    let releaseDateTextField = CustomInputView(placeholder: "Release Date")
+    let releaseDateTextField = CustomInputView(placeholder: "Release Date").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "calendar"))
+    }
     
     let deviceNumberTextField = CustomInputView(placeholder: "Device number (e.g for office, etc)")
     

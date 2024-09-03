@@ -9,13 +9,17 @@ class EditView: UIView, UIGestureRecognizerDelegate {
     
     let contentView = UIView()
     
-    let typeTextField = CustomInputView(placeholder: "Type")
+    let typeTextField = CustomInputView(placeholder: "Type").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
     let deviceNameTextField = CustomInputView(placeholder: "Device Name")
-    
+
     let modelTextField = CustomInputView(placeholder: "Model")
     
-    let releaseDateTextField = CustomInputView(placeholder: "Release Date")
+    let releaseDateTextField = CustomInputView(placeholder: "Release Date").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "calendar"))
+    }
     
     let deviceNumberTextField = CustomInputView(placeholder: "Device number (e.g for office, etc)")
     
@@ -47,7 +51,9 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         $0.text = "Service"
     }
     
-    let serviceTextField = CustomInputView(placeholder: "Every 365 days")
+    let serviceTextField = CustomInputView(placeholder: "Every 365 days").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
     let cleanLabel = UILabel().then {
         $0.backgroundColor = .clear
@@ -57,7 +63,9 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         $0.text = "Clean"
     }
     
-    let cleanTextField = CustomInputView(placeholder: "Every 5 days")
+    let cleanTextField = CustomInputView(placeholder: "Every 5 days").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
     let memoryCleaning = UILabel().then {
         $0.backgroundColor = .clear
@@ -67,7 +75,9 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         $0.text = "Memory cleaning"
     }
     
-    let memoryCleaningTextField = CustomInputView(placeholder: "Every 5 days")
+    let memoryCleaningTextField = CustomInputView(placeholder: "Every 5 days").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
     let saveButton = CustomButton(title: "Save")
     
@@ -179,7 +189,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         }
         
         serviceTextField.snp.makeConstraints {
-            $0.top.equalTo(serviceLabel.snp.bottom).offset(16)
+            $0.top.equalTo(serviceLabel.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(44)
         }
@@ -190,7 +200,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         }
         
         cleanTextField.snp.makeConstraints {
-            $0.top.equalTo(cleanLabel.snp.bottom).offset(16)
+            $0.top.equalTo(cleanLabel.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(44)
         }
@@ -201,7 +211,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         }
         
         memoryCleaningTextField.snp.makeConstraints {
-            $0.top.equalTo(memoryCleaning.snp.bottom).offset(16)
+            $0.top.equalTo(memoryCleaning.snp.bottom).offset(10)
             $0.left.right.equalToSuperview().inset(16)
             $0.height.equalTo(44)
         }

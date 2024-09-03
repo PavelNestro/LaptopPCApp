@@ -24,13 +24,17 @@ class DeviceVC: UIViewController {
     }
     
     func addTargets() {
-        print("Экран DeviceVC включен")
+        rootView.chekInButton.addTarget(self, action: #selector(checkInButtonAction), for: .touchUpInside)
     }
     
     private func setupNavBar() {
         let settingsButton = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editButtonAction))
         settingsButton.tintColor = .black
         self.navigationItem.rightBarButtonItem = settingsButton
+    }
+    
+    @objc func checkInButtonAction() {
+        presenter.toChekInScreen()
     }
     
     @objc func editButtonAction() {

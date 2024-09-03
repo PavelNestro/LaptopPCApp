@@ -4,13 +4,15 @@ class CustomInputView: UIView {
 
     var placeholder: String
     
-    lazy var textField = UITextView().then {
+    lazy var textField = UITextField().then {
         $0.backgroundColor = .mainGray
         $0.textColor = .black
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 22
-        $0.textContainerInset = UIEdgeInsets(top: 11, left: 16, bottom: 0, right: 6)
-        $0.addPlaceholder(placeholder)
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: $0.frame.height))
+        $0.leftView = paddingView
+        $0.leftViewMode = .always
+        $0.placeholder = placeholder
         $0.font = .systemFont(ofSize: 15, weight: .regular)
     }
     
@@ -28,6 +30,21 @@ class CustomInputView: UIView {
         backgroundColor = .clear
         addSubviews()
         makeConstraints()
+    }
+    
+    func configureTextFieldLeftView(image: UIImage?) {
+        guard let image = image else { return }
+        
+        let icon = UIImageView(image: image)
+        icon.contentMode = .scaleAspectFit
+        icon.frame = CGRect(x: 0, y: 0, width: 24, height: 30)
+        icon.tintColor = .black
+
+        let paddingView = UIView(frame: CGRect(x: 34, y: 0, width: 10, height: 30))
+        textField.rightView = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 30))
+        textField.rightView?.addSubview(icon)
+        textField.rightView?.addSubview(paddingView)
+        textField.rightViewMode = .always
     }
     
     func addSubviews() {

@@ -63,4 +63,10 @@ final class Coordinator: NSObject, NavigationInterface {
         vc.title = "Edit device"
         navigationPushViewController(vc, animated: true)
     }
+    
+    func routeToCheckInScreen() {
+        let vc = controllerFactory.createCheckInVC(coordinator: self)
+        vc.title = "Check-In"
+        navigationPushViewController(vc, animated: true)
+    }
 }

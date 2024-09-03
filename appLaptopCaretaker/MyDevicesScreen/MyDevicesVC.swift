@@ -7,7 +7,7 @@ protocol MyDevicesViewProtocol: AnyObject {
 class MyDevicesVC: UIViewController {
     
     var deviceArray = [
-        Device(name: "MacBook Pro M2", serviceDays: 300, cleanDays: 3, memoryClearingDays: 1), Device(name: "My PC", serviceDays: 122, cleanDays: 2, memoryClearingDays: 2)]
+        Device(name: "MacBook Pro M2", serviceDays: 300, cleanDays: 3, memoryClearingDays: 1, type: "laptop"), Device(name: "My PC", serviceDays: 122, cleanDays: 2, memoryClearingDays: 2, type: "PC")]
     
     var presenter: MyDevicesProtocol!
     
@@ -74,4 +74,5 @@ struct Device {
     let serviceDays: Int
     let cleanDays: Int
     let memoryClearingDays: Int
+    let type: String
 }

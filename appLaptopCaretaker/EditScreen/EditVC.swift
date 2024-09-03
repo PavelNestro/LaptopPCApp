@@ -4,7 +4,7 @@ protocol EditViewProtocol: AnyObject {
     func testFunc()
 }
 
-class EditVC: UIViewController {
+class EditVC: UIViewController, UINavigationControllerDelegate {
     
     var presenter: EditPresenter!
     
@@ -23,7 +23,49 @@ class EditVC: UIViewController {
     }
     
     func addTargets() {
-        print("Экран EditVC включен")
+        let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped(_:)))
+        rootView.photoPCImageView.addGestureRecognizer(imageTapGesture)
+        
+        let typeTapGesture = UITapGestureRecognizer(target: self, action: #selector(typeTextFieldTapped))
+        rootView.typeTextField.textField.addGestureRecognizer(typeTapGesture)
+        
+        let serviceTapGesture = UITapGestureRecognizer(target: self, action: #selector(serviceTextFieldAction))
+        rootView.serviceTextField.textField.addGestureRecognizer(serviceTapGesture)
+        
+        let cleanTapGesture = UITapGestureRecognizer(target: self, action: #selector(cleanTextFieldAction))
+        rootView.cleanTextField.textField.addGestureRecognizer(cleanTapGesture)
+        
+        let memoryTapGesture = UITapGestureRecognizer(target: self, action: #selector(memoryTextFieldAction))
+        rootView.memoryCleaningTextField.textField.addGestureRecognizer(memoryTapGesture)
+        
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        
+        rootView.releaseDateTextField.textField.inputView = datePicker
+    }
+    
+    private func openImagePicker() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @objc func buttonTapped(_ gesture: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.1,
+                       animations: {
+                           gesture.view?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+                       }) { (_) in
+            UIView.animate(withDuration: 0.1,
+                           animations: {
+                               gesture.view?.transform = CGAffineTransform.identity
+                           },
+                           completion: { _ in
+                self.openImagePicker()
+                           })
+        }
     }
     
     private func setupNavBar() {
@@ -35,7 +77,6 @@ class EditVC: UIViewController {
     @objc func deleteButtonAction() {
         print("editButton")
     }
-    
 }
 
 extension EditVC: EditViewProtocol {

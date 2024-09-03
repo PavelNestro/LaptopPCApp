@@ -8,6 +8,7 @@ protocol ControllerFactoryProtocol {
     func createAddNewDeviceVC(coordinator: Coordinator) -> UIViewController
     func createDeviceVC(coordinator: Coordinator) -> UIViewController
     func createEditVC(coordinator: Coordinator) -> UIViewController
+    func createCheckInVC(coordinator: Coordinator) -> UIViewController
 }
 
 // MARK: - FACTORY
@@ -75,6 +76,16 @@ final class ControllerFactory: ControllerFactoryProtocol {
     func createEditVC(coordinator: Coordinator) -> UIViewController {
         let view = EditVC()
         let presenter = EditPresenter(view: view)
+        presenter.coordinator = coordinator
+
+        view.presenter = presenter
+        
+        return view
+    }
+    
+    func createCheckInVC(coordinator: Coordinator) -> UIViewController {
+        let view = CheckInCV()
+        let presenter = CheckInPresenter(view: view)
         presenter.coordinator = coordinator
 
         view.presenter = presenter

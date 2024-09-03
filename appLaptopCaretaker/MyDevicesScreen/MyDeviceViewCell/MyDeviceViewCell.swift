@@ -89,34 +89,16 @@ class MyDeviceViewCell: UITableViewCell {
         serviceDaysDataLabel.text = "\(model.serviceDays) days"
         cleanDaysDataLabel.text = "\(model.cleanDays) days"
         memoryClearingDataLabel.text = "\(model.memoryClearingDays) day"
-    }
-    
-    func configurePostType(_ postValue: String) {
-        switch postValue {
-        case "i-post":
-            mainContentView.backgroundColor = UIColor(red255: 255, green255: 239, blue255: 208, alpha: 1)
-        case "i-reals":
-            mainContentView.backgroundColor = UIColor(red255: 216, green255: 243, blue255: 255, alpha: 1)
-        case "i-battle":
-            mainContentView.backgroundColor = UIColor(red255: 255, green255: 213, blue255: 236, alpha: 1)
-        case "i-mockup":
-            mainContentView.backgroundColor = UIColor(red255: 247, green255: 213, blue255: 255, alpha: 1)
-        case "i-integration":
-            mainContentView.backgroundColor = UIColor(red255: 226, green255: 213, blue255: 255, alpha: 1)
-        case "i-collaboration":
-            mainContentView.backgroundColor = UIColor(red255: 213, green255: 222, blue255: 255, alpha: 1)
-        case "i-broadcast":
-            mainContentView.backgroundColor = UIColor(red255: 255, green255: 213, blue255: 213, alpha: 1)
-        case "t-post-with-photo":
-            mainContentView.backgroundColor = UIColor(red255: 213, green255: 255, blue255: 230, alpha: 1)
-        case "t-post-without-photo":
-            mainContentView.backgroundColor = UIColor(red255: 231, green255: 255, blue255: 213, alpha: 1)
-        case "t-broadcast":
-            mainContentView.backgroundColor = UIColor(red255: 213, green255: 255, blue255: 255, alpha: 1)
+        
+        switch model.type {
+        case "laptop":
+            mainContentView.backgroundColor = .mainGreen
+        case "PC":
+            mainContentView.backgroundColor = .mainOrange
         default:
-            mainContentView.backgroundColor = UIColor(red255: 213, green255: 255, blue255: 255, alpha: 1)
+            mainContentView.backgroundColor = UIColor.gray
         }
-    } // добавить для каждоай ячейки свой цвет !!!! 
+    }
 
     func addViews() {
         contentView.addSubview(mainContentView)

@@ -9,13 +9,17 @@ class AddNewDeviceView: UIView, UIGestureRecognizerDelegate {
     
     let contentView = UIView()
     
-    let typeTextField = CustomInputView(placeholder: "Type")
+    let typeTextField = CustomInputView(placeholder: "Type").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
     let deviceNameTextField = CustomInputView(placeholder: "Device Name")
     
     let modelTextField = CustomInputView(placeholder: "Model")
     
-    let releaseDateTextField = CustomInputView(placeholder: "Release Date")
+    let releaseDateTextField = CustomInputView(placeholder: "Release Date").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "calendar"))
+    }
     
     let deviceNumberTextField = CustomInputView(placeholder: "Device number (e.g for office, etc)")
     
@@ -50,7 +54,6 @@ class AddNewDeviceView: UIView, UIGestureRecognizerDelegate {
         backgroundColor = .white
         addSubviews()
         setupConstraints()
-        setupGestureRecognizers()
     }
     
     private func addSubviews() {
@@ -130,27 +133,6 @@ class AddNewDeviceView: UIView, UIGestureRecognizerDelegate {
             make.top.equalTo(photoPCImageView.snp.bottom).offset(20)
             make.left.right.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().offset(-20)
-        }
-    }
-    
-    func setupGestureRecognizers() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped(_:)))
-        tapGesture.delegate = self
-        photoPCImageView.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func buttonTapped(_ gesture: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 0.1,
-                       animations: {
-                           gesture.view?.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
-                       }) { (_) in
-            UIView.animate(withDuration: 0.1,
-                           animations: {
-                               gesture.view?.transform = CGAffineTransform.identity
-                           },
-                           completion: { _ in
-                               self.buttonTappedHandler?()
-                           })
         }
     }
 }
