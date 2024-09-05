@@ -6,8 +6,7 @@ protocol MyDevicesViewProtocol: AnyObject {
 
 class MyDevicesVC: UIViewController {
     
-    var deviceArray = [
-        Device(name: "MacBook Pro M2", serviceDays: 300, cleanDays: 3, memoryClearingDays: 1), Device(name: "My PC", serviceDays: 122, cleanDays: 2, memoryClearingDays: 2)]
+    var deviceArray = [Device]()
     
     var presenter: MyDevicesProtocol!
     
@@ -24,9 +23,25 @@ class MyDevicesVC: UIViewController {
         addTargets()
         setupNavBar()
         setupTableView()
+        getUser()
         chekDevices()
-        rootView.greetingsLabel.text = "Hello, Name!"
-        rootView.addYourFirsDeviceLabel.text = "Add your first\ndevice!"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let user = RealmManager.shared.getUser() {
+            deviceArray = Array(user.devices)
+            chekDevices()
+            getUser()
+            rootView.tableView.reloadData()
+        }
+    }
+    
+    func getUser() {
+        if let user = RealmManager.shared.getUser() {
+            rootView.greetingsLabel.text = "Hello, \(user.name)!"
+            deviceArray = Array(user.devices)
+        }
     }
     
     func addTargets() {
@@ -42,6 +57,8 @@ class MyDevicesVC: UIViewController {
     }
     
     func chekDevices() {
+        rootView.addYourFirsDeviceLabel.text = "Add your first\ndevice!"
+        
         if deviceArray.isEmpty == true {
             rootView.addYourFirsDeviceLabel.isHidden = false
         } else {
@@ -67,11 +84,4 @@ extension MyDevicesVC: MyDevicesViewProtocol {
     }
     
     
-}
-
-struct Device {
-    let name: String
-    let serviceDays: Int
-    let cleanDays: Int
-    let memoryClearingDays: Int
 }

@@ -2,6 +2,7 @@ import Foundation
 
 protocol EditPresenterProtocol {
     func getTest()
+    func toMyDevicesScreen()
 }
 
 class EditPresenter {
@@ -17,6 +18,10 @@ class EditPresenter {
 }
 
 extension EditPresenter: EditPresenterProtocol {    
+    func toMyDevicesScreen() {
+        coordinator.myDevicesScreen()
+    }
+    
     func getTest() {
         view?.testFunc()
     }

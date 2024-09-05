@@ -1,18 +1,18 @@
 import UIKit
-import Then
-import SnapKit
 
-class WelcomeView: UIView {
+class CheckInView: UIView {
     
-    let welcomLabel = UILabel().then {
-        $0.font = .systemFont(ofSize: 48, weight: .regular)
+    let typeOfCareLabel = UILabel().then {
+        $0.font = .systemFont(ofSize: 17, weight: .medium)
         $0.numberOfLines = 0
-        $0.text = "Hello!\nEnter your name."
+        $0.text = "Type of care:"
     }
     
-    let nameTextField = CustomTextFiled(placeholder: "Name")
+    let typeOfCareTextField = CustomTextFiled(placeholder: "Type of care").then {
+        $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
+    }
     
-    let nextButton = CustomButton(title: "Next")
+    let addChekInButton = CustomButton(title: "Add Check-In")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -31,25 +31,24 @@ class WelcomeView: UIView {
     }
     
     private func addSubviews() {
-        addSubview(welcomLabel)
-        addSubview(nameTextField)
-        addSubview(nextButton)
+        addSubview(typeOfCareLabel)
+        addSubview(typeOfCareTextField)
+        addSubview(addChekInButton)
     }
     
     private func setupConstraints() {
-        welcomLabel.snp.makeConstraints {
-            $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-100)
+        typeOfCareLabel.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide.snp.top).offset(20)
             $0.horizontalEdges.equalToSuperview().inset(16)
         }
         
-        nameTextField.snp.makeConstraints {
-            $0.top.equalTo(welcomLabel.snp.bottom).offset(26)
+        typeOfCareTextField.snp.makeConstraints {
+            $0.top.equalTo(typeOfCareLabel.snp.bottom).offset(10)
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.height.equalTo(44)
         }
         
-        nextButton.snp.makeConstraints {
+        addChekInButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(50)
         }

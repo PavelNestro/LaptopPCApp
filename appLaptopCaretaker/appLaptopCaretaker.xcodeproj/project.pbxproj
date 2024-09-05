@@ -19,7 +19,7 @@
 		F0545DFA2C84A38F00309B2B /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545DF92C84A38F00309B2B /* WelcomeView.swift */; };
 		F0545DFE2C84A68000309B2B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F0545DFD2C84A68000309B2B /* SnapKit */; };
 		F0545E052C84D17400309B2B /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E042C84D17400309B2B /* UIColor + Extension.swift */; };
-		F0545E072C84DA0C00309B2B /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E062C84DA0C00309B2B /* CustomInputView.swift */; };
+		F0545E072C84DA0C00309B2B /* CustomTextFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E062C84DA0C00309B2B /* CustomTextFiled.swift */; };
 		F0545E092C84DA5000309B2B /* UITextView + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E082C84DA5000309B2B /* UITextView + Extensions.swift */; };
 		F0545E0B2C84E00000309B2B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E0A2C84E00000309B2B /* CustomButton.swift */; };
 		F0545E0E2C84E51D00309B2B /* AddFirstDevicePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E0D2C84E51D00309B2B /* AddFirstDevicePresenter.swift */; };
@@ -47,7 +47,35 @@
 		F0545E462C876DAC00309B2B /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E452C876DAC00309B2B /* EditView.swift */; };
 		F0545E482C876DB600309B2B /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E472C876DB600309B2B /* EditVC.swift */; };
 		F0545E4A2C876DC300309B2B /* EditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0545E492C876DC300309B2B /* EditPresenter.swift */; };
+		F0DF93732C87C7FE00A23BE3 /* EditVC + Func.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93722C87C7FE00A23BE3 /* EditVC + Func.swift */; };
+		F0DF93762C87C9FC00A23BE3 /* CheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93752C87C9FC00A23BE3 /* CheckInView.swift */; };
+		F0DF93782C87CA0A00A23BE3 /* CheckInCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93772C87CA0A00A23BE3 /* CheckInCV.swift */; };
+		F0DF937A2C87CA1A00A23BE3 /* CheckInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93792C87CA1A00A23BE3 /* CheckInPresenter.swift */; };
+		F0DF93842C888C0700A23BE3 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93832C888C0700A23BE3 /* RealmManager.swift */; };
+		F0DF93862C888DE100A23BE3 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F0DF93852C888DE100A23BE3 /* RealmSwift */; };
+		F0DF93872C888DE100A23BE3 /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = F0DF93852C888DE100A23BE3 /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F0DF938A2C88A2A600A23BE3 /* UIImage + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93892C88A2A600A23BE3 /* UIImage + Extension.swift */; };
+		F0DF938C2C891DC800A23BE3 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF938B2C891DC800A23BE3 /* UITextField + Extension.swift */; };
+		F0DF938E2C89243400A23BE3 /* CustomInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF938D2C89243400A23BE3 /* CustomInputView.swift */; };
+		F0DF93902C89E92600A23BE3 /* WebGlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF938F2C89E92600A23BE3 /* WebGlossaryViewController.swift */; };
+		F0DF93932C89E98F00A23BE3 /* EditNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93922C89E98F00A23BE3 /* EditNameView.swift */; };
+		F0DF93952C89E99A00A23BE3 /* EditNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93942C89E99A00A23BE3 /* EditNameVC.swift */; };
+		F0DF93972C89E9A500A23BE3 /* EditNamePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DF93962C89E9A500A23BE3 /* EditNamePresenter.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F0DF93882C888DE100A23BE3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F0DF93872C888DE100A23BE3 /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F0545DB82C8498E500309B2B /* appLaptopCaretaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = appLaptopCaretaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +90,7 @@
 		F0545DF62C84A31D00309B2B /* WelcomVCPresenter .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomVCPresenter .swift"; sourceTree = "<group>"; };
 		F0545DF92C84A38F00309B2B /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		F0545E042C84D17400309B2B /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
-		F0545E062C84DA0C00309B2B /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
+		F0545E062C84DA0C00309B2B /* CustomTextFiled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFiled.swift; sourceTree = "<group>"; };
 		F0545E082C84DA5000309B2B /* UITextView + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView + Extensions.swift"; sourceTree = "<group>"; };
 		F0545E0A2C84E00000309B2B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F0545E0D2C84E51D00309B2B /* AddFirstDevicePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFirstDevicePresenter.swift; sourceTree = "<group>"; };
@@ -90,6 +118,18 @@
 		F0545E452C876DAC00309B2B /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F0545E472C876DB600309B2B /* EditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		F0545E492C876DC300309B2B /* EditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPresenter.swift; sourceTree = "<group>"; };
+		F0DF93722C87C7FE00A23BE3 /* EditVC + Func.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditVC + Func.swift"; sourceTree = "<group>"; };
+		F0DF93752C87C9FC00A23BE3 /* CheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
+		F0DF93772C87CA0A00A23BE3 /* CheckInCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInCV.swift; sourceTree = "<group>"; };
+		F0DF93792C87CA1A00A23BE3 /* CheckInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInPresenter.swift; sourceTree = "<group>"; };
+		F0DF93832C888C0700A23BE3 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		F0DF93892C88A2A600A23BE3 /* UIImage + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + Extension.swift"; sourceTree = "<group>"; };
+		F0DF938B2C891DC800A23BE3 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
+		F0DF938D2C89243400A23BE3 /* CustomInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputView.swift; sourceTree = "<group>"; };
+		F0DF938F2C89E92600A23BE3 /* WebGlossaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebGlossaryViewController.swift; sourceTree = "<group>"; };
+		F0DF93922C89E98F00A23BE3 /* EditNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameView.swift; sourceTree = "<group>"; };
+		F0DF93942C89E99A00A23BE3 /* EditNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNameVC.swift; sourceTree = "<group>"; };
+		F0DF93962C89E9A500A23BE3 /* EditNamePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNamePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0DF93862C888DE100A23BE3 /* RealmSwift in Frameworks */,
 				F0545DED2C849E0C00309B2B /* Then in Frameworks */,
 				F0545DFE2C84A68000309B2B /* SnapKit in Frameworks */,
 			);
@@ -108,6 +149,8 @@
 		F0545DAF2C8498E500309B2B = {
 			isa = PBXGroup;
 			children = (
+				F0DF93912C89E97E00A23BE3 /* EditNameScreen */,
+				F0DF93742C87C9DC00A23BE3 /* CheckInScreen */,
 				F0545E442C876D8300309B2B /* EditScreen */,
 				F0545E382C874FBF00309B2B /* DeviceScreen */,
 				F0545E2F2C87204200309B2B /* AddNewDeviceScreen */,
@@ -115,6 +158,7 @@
 				F0545E132C85E00D00309B2B /* MyDevicesScreen */,
 				F0545E0C2C84E4DA00309B2B /* AddFirstDeviceScreen */,
 				F0545DF82C84A32C00309B2B /* WelcomeScreen */,
+				F0DF93802C8886E100A23BE3 /* Service */,
 				F0545DF52C84A29500309B2B /* AppLaunch */,
 				F0545DEE2C84A0B400309B2B /* Navigation */,
 				F0545DFF2C84CFD900309B2B /* Additional */,
@@ -189,8 +233,9 @@
 		F0545E002C84D00A00309B2B /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				F0545E062C84DA0C00309B2B /* CustomInputView.swift */,
+				F0545E062C84DA0C00309B2B /* CustomTextFiled.swift */,
 				F0545E0A2C84E00000309B2B /* CustomButton.swift */,
+				F0DF938D2C89243400A23BE3 /* CustomInputView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -200,6 +245,8 @@
 			children = (
 				F0545E042C84D17400309B2B /* UIColor + Extension.swift */,
 				F0545E082C84DA5000309B2B /* UITextView + Extensions.swift */,
+				F0DF93892C88A2A600A23BE3 /* UIImage + Extension.swift */,
+				F0DF938B2C891DC800A23BE3 /* UITextField + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +297,7 @@
 			children = (
 				F0545E2B2C86722100309B2B /* CustomSettingButton.swift */,
 				F0545E2D2C86743600309B2B /* SettingsSectionView.swift */,
+				F0DF938F2C89E92600A23BE3 /* WebGlossaryViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -290,9 +338,54 @@
 			children = (
 				F0545E452C876DAC00309B2B /* EditView.swift */,
 				F0545E472C876DB600309B2B /* EditVC.swift */,
+				F0DF93722C87C7FE00A23BE3 /* EditVC + Func.swift */,
 				F0545E492C876DC300309B2B /* EditPresenter.swift */,
 			);
 			path = EditScreen;
+			sourceTree = "<group>";
+		};
+		F0DF93742C87C9DC00A23BE3 /* CheckInScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F0DF93752C87C9FC00A23BE3 /* CheckInView.swift */,
+				F0DF93772C87CA0A00A23BE3 /* CheckInCV.swift */,
+				F0DF93792C87CA1A00A23BE3 /* CheckInPresenter.swift */,
+			);
+			path = CheckInScreen;
+			sourceTree = "<group>";
+		};
+		F0DF93802C8886E100A23BE3 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				F0DF93822C8887BE00A23BE3 /* RealmManager */,
+				F0DF93812C88870200A23BE3 /* Models */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		F0DF93812C88870200A23BE3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F0DF93822C8887BE00A23BE3 /* RealmManager */ = {
+			isa = PBXGroup;
+			children = (
+				F0DF93832C888C0700A23BE3 /* RealmManager.swift */,
+			);
+			path = RealmManager;
+			sourceTree = "<group>";
+		};
+		F0DF93912C89E97E00A23BE3 /* EditNameScreen */ = {
+			isa = PBXGroup;
+			children = (
+				F0DF93922C89E98F00A23BE3 /* EditNameView.swift */,
+				F0DF93942C89E99A00A23BE3 /* EditNameVC.swift */,
+				F0DF93962C89E9A500A23BE3 /* EditNamePresenter.swift */,
+			);
+			path = EditNameScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +398,7 @@
 				F0545DB42C8498E500309B2B /* Sources */,
 				F0545DB52C8498E500309B2B /* Frameworks */,
 				F0545DB62C8498E500309B2B /* Resources */,
+				F0DF93882C888DE100A23BE3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,6 +408,7 @@
 			packageProductDependencies = (
 				F0545DEC2C849E0C00309B2B /* Then */,
 				F0545DFD2C84A68000309B2B /* SnapKit */,
+				F0DF93852C888DE100A23BE3 /* RealmSwift */,
 			);
 			productName = appLaptopCaretaker;
 			productReference = F0545DB82C8498E500309B2B /* appLaptopCaretaker.app */;
@@ -346,6 +441,7 @@
 			packageReferences = (
 				F0545DEB2C849E0C00309B2B /* XCRemoteSwiftPackageReference "Then" */,
 				F0545DFB2C84A62D00309B2B /* XCRemoteSwiftPackageReference "SnapKit" */,
+				F0DF937B2C8886A900A23BE3 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = F0545DB92C8498E500309B2B /* Products */;
 			projectDirPath = "";
@@ -374,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0545E3C2C87501600309B2B /* DevicePresenter.swift in Sources */,
+				F0DF93972C89E9A500A23BE3 /* EditNamePresenter.swift in Sources */,
 				F0545DC02C8498E500309B2B /* WelcomeVC.swift in Sources */,
 				F0545E312C87208400309B2B /* AddNewDeviceVC.swift in Sources */,
 				F0545E2C2C86722100309B2B /* CustomSettingButton.swift in Sources */,
@@ -381,28 +478,39 @@
 				F0545E3A2C87500A00309B2B /* DeviceVC.swift in Sources */,
 				F0545E272C866E0300309B2B /* SettingsView.swift in Sources */,
 				F0545E052C84D17400309B2B /* UIColor + Extension.swift in Sources */,
+				F0DF93762C87C9FC00A23BE3 /* CheckInView.swift in Sources */,
+				F0DF93932C89E98F00A23BE3 /* EditNameView.swift in Sources */,
 				F0545DBC2C8498E500309B2B /* AppDelegate.swift in Sources */,
+				F0DF938E2C89243400A23BE3 /* CustomInputView.swift in Sources */,
 				F0545E092C84DA5000309B2B /* UITextView + Extensions.swift in Sources */,
 				F0545E412C8751B700309B2B /* InfoCleanDeviceView.swift in Sources */,
 				F0545E102C84E53300309B2B /* AddFirstDeviceVC.swift in Sources */,
 				F0545DF72C84A31D00309B2B /* WelcomVCPresenter .swift in Sources */,
+				F0DF937A2C87CA1A00A23BE3 /* CheckInPresenter.swift in Sources */,
 				F0545E332C87209D00309B2B /* AddNewDevicePresenter.swift in Sources */,
+				F0DF93842C888C0700A23BE3 /* RealmManager.swift in Sources */,
+				F0DF93732C87C7FE00A23BE3 /* EditVC + Func.swift in Sources */,
 				F0545E252C866DE800309B2B /* SettingsPresenter.swift in Sources */,
 				F0545E1C2C85F0CA00309B2B /* MyDeviceViewCell.swift in Sources */,
+				F0DF93902C89E92600A23BE3 /* WebGlossaryViewController.swift in Sources */,
 				F0545E192C85E04A00309B2B /* MyDevicesView.swift in Sources */,
 				F0545E432C875CEE00309B2B /* InfoModelDeviceView.swift in Sources */,
 				F0545E462C876DAC00309B2B /* EditView.swift in Sources */,
 				F0545DFA2C84A38F00309B2B /* WelcomeView.swift in Sources */,
 				F0545E4A2C876DC300309B2B /* EditPresenter.swift in Sources */,
+				F0DF93952C89E99A00A23BE3 /* EditNameVC.swift in Sources */,
+				F0DF93782C87CA0A00A23BE3 /* CheckInCV.swift in Sources */,
 				F0545E482C876DB600309B2B /* EditVC.swift in Sources */,
 				F0545E352C8720AD00309B2B /* AddNewDeviceView.swift in Sources */,
-				F0545E072C84DA0C00309B2B /* CustomInputView.swift in Sources */,
+				F0545E072C84DA0C00309B2B /* CustomTextFiled.swift in Sources */,
 				F0545E202C85F4F800309B2B /* MyDevicesVC + UITableViewDelegate.swift in Sources */,
 				F0545E0B2C84E00000309B2B /* CustomButton.swift in Sources */,
 				F0545E3E2C87502500309B2B /* DeviceView.swift in Sources */,
+				F0DF938C2C891DC800A23BE3 /* UITextField + Extension.swift in Sources */,
 				F0545DF42C84A12200309B2B /* Coordinator.swift in Sources */,
 				F0545E0E2C84E51D00309B2B /* AddFirstDevicePresenter.swift in Sources */,
 				F0545DF22C84A11200309B2B /* ControllerFactory.swift in Sources */,
+				F0DF938A2C88A2A600A23BE3 /* UIImage + Extension.swift in Sources */,
 				F0545DF02C84A10000309B2B /* NavInterface.swift in Sources */,
 				F0545E152C85E02C00309B2B /* MyDevicesPresenter.swift in Sources */,
 				F0545E172C85E03F00309B2B /* MyDevicesVC.swift in Sources */,
@@ -639,6 +747,14 @@
 				minimumVersion = 5.7.1;
 			};
 		};
+		F0DF937B2C8886A900A23BE3 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -651,6 +767,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0545DFB2C84A62D00309B2B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		F0DF93852C888DE100A23BE3 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0DF937B2C8886A900A23BE3 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

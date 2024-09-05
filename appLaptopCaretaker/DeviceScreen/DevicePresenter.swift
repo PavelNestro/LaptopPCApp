@@ -2,7 +2,8 @@ import Foundation
 
 protocol DevicePresenterProtocol {
     func getTest()
-    func toEditScreen()
+    func toEditScreen(with device: Device)
+    func toCheckInScreen(with device: Device)
 }
 
 class DevicePresenter {
@@ -18,8 +19,12 @@ class DevicePresenter {
 }
 
 extension DevicePresenter: DevicePresenterProtocol {
-    func toEditScreen() {
-        coordinator.routeToEditScreen()
+    func toCheckInScreen(with device: Device) {
+        coordinator.routeToCheckInScreen(device: device)
+    }
+    
+    func toEditScreen(with device: Device) {
+        coordinator.routeToEditScreen(device: device)
     }
     
     func getTest() {

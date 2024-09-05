@@ -15,7 +15,13 @@ final class Coordinator: NSObject, NavigationInterface {
 
     // MARK: - APPLICATION START
     func start() {
-        setupWelcomScreen()
+        let user = RealmManager.shared.getUser()
+        
+        if user != nil {
+            myDevicesScreen()
+        } else {
+            setupWelcomScreen()
+        }
         
         window.overrideUserInterfaceStyle = .light
         window.makeKeyAndVisible()
@@ -52,15 +58,27 @@ final class Coordinator: NSObject, NavigationInterface {
         navigationPushViewController(vc, animated: true)
     }
     
-    func routeDeviceScreen() {
-        let vc = controllerFactory.createDeviceVC(coordinator: self)
+    func routeDeviceScreen(device: Device) {
+        let vc = controllerFactory.createDeviceVC(coordinator: self, device: device)
         vc.title = "Device"
         navigationPushViewController(vc, animated: true)
     }
     
-    func routeToEditScreen() {
-        let vc = controllerFactory.createEditVC(coordinator: self)
+    func routeToEditScreen(device: Device) {
+        let vc = controllerFactory.createEditVC(coordinator: self, device: device)
         vc.title = "Edit device"
+        navigationPushViewController(vc, animated: true)
+    }
+    
+    func routeToCheckInScreen(device: Device) {
+        let vc = controllerFactory.createCheckInVC(coordinator: self, device: device)
+        vc.title = "Check-In"
+        navigationPushViewController(vc, animated: true)
+    }
+    
+    func routeToEditNameScreen() {
+        let vc = controllerFactory.createEditNameVC(coordinator: self)
+        vc.title = "Edit Name"
         navigationPushViewController(vc, animated: true)
     }
 }

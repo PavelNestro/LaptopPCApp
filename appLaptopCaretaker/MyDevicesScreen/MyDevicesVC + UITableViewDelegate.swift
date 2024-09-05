@@ -20,7 +20,8 @@ extension MyDevicesVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.toDeviceScreen()
+        let device = deviceArray[indexPath.row]
+        presenter.toDeviceScreen(with: device)
     }
 }
 

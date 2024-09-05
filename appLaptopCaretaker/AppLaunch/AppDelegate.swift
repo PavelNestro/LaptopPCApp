@@ -10,7 +10,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         coordinator = Coordinator()
         coordinator?.start()
 //        IQKeyboardManager.shared.enable = true
-//        print(UserDefaultsManager.token)
         return true
     }
 }
