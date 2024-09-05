@@ -6,6 +6,8 @@ protocol AddNewDeviceViewProtocol: AnyObject {
 
 class AddNewDeviceVC: UIViewController, UINavigationControllerDelegate {
     
+    let device = Device()
+    
     var presenter: AddNewDevicePresenter!
     
     var rootView: AddNewDeviceView {
@@ -34,6 +36,8 @@ class AddNewDeviceVC: UIViewController, UINavigationControllerDelegate {
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         
         rootView.releaseDateTextField.textField.inputView = datePicker
+        
+        rootView.doneButton.addTarget(self, action: #selector(donbeButtonAction), for: .touchUpInside)
     }
     
     private func openImagePicker() {
@@ -62,10 +66,12 @@ class AddNewDeviceVC: UIViewController, UINavigationControllerDelegate {
         let alertController = UIAlertController(title: "Select Device Type", message: nil, preferredStyle: .actionSheet)
         
         let laptopAction = UIAlertAction(title: "Laptop", style: .default) { _ in
+            self.rootView.typeTextField.textField.textColor = .black
             self.rootView.typeTextField.textField.text = "Laptop"
         }
         
         let pcAction = UIAlertAction(title: "PC", style: .default) { _ in
+            self.rootView.typeTextField.textField.textColor = .black
             self.rootView.typeTextField.textField.text = "PC"
         }
         
@@ -82,7 +88,43 @@ class AddNewDeviceVC: UIViewController, UINavigationControllerDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         rootView.releaseDateTextField.textField.text = dateFormatter.string(from: sender.date)
+        self.device.releaseDate = sender.date
     }
+    
+    @objc private func donbeButtonAction() {
+        let typeText = rootView.typeTextField.textField.text ?? ""
+        let deviceNameText = rootView.deviceNameTextField.textField.text ?? ""
+
+        if typeText.isEmpty {
+            rootView.typeTextField.textField.setPlaceholder("Type is required", color: .red)
+        } else {
+            rootView.typeTextField.textField.setPlaceholder("Type", color: .systemGray)
+        }
+
+        if deviceNameText.isEmpty {
+            rootView.deviceNameTextField.textField.setPlaceholder("Device Name is required", color: .red)
+        } else {
+            rootView.deviceNameTextField.textField.setPlaceholder("Device Name", color: .systemGray)
+        }
+
+        if typeText.isEmpty || deviceNameText.isEmpty {
+            return
+        }
+
+        device.type = typeText
+        device.deviceName = deviceNameText
+        device.deviceModel = rootView.modelTextField.textField.text ?? ""
+        device.deviceNumber = rootView.deviceNumberTextField.textField.text ?? ""
+        device.characteristics = rootView.characteristicsTextField.textField.text ?? ""
+        device.note = rootView.noteTextField.textField.text ?? ""
+
+        if let existingUser = RealmManager.shared.getUser() {
+            RealmManager.shared.saveDevice(device, to: existingUser)
+        }
+
+        navigationController?.popViewController(animated: true)
+    }
+
 }
 
 extension AddNewDeviceVC: AddNewDeviceViewProtocol {

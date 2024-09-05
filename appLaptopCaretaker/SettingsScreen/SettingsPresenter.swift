@@ -2,6 +2,7 @@ import Foundation
 
 protocol SettingsPresenterProtocol {
     func getTest()
+    func toEditNameScreen()
 }
 
 class SettingsPresenter {
@@ -19,5 +20,9 @@ class SettingsPresenter {
 extension SettingsPresenter: SettingsPresenterProtocol {
     func getTest() {
         view?.testFunc()
+    }
+    
+    func toEditNameScreen() {
+        coordinator.routeToEditNameScreen()
     }
 }

@@ -84,20 +84,58 @@ class MyDeviceViewCell: UITableViewCell {
         
     //MARK: - public methods
     
-    func configure(with model: Device) {
-        nameLabel.text = model.name
-        serviceDaysDataLabel.text = "\(model.serviceDays) days"
-        cleanDaysDataLabel.text = "\(model.cleanDays) days"
-        memoryClearingDataLabel.text = "\(model.memoryClearingDays) day"
+    func configure(with device: Device) {
+        nameLabel.text = device.deviceName
+        let currentDate = Date()
+        let daysSinceServiceLastCheckIn = Calendar.current.dateComponents([.day], from: device.lastCheckServiceInDate, to: currentDate).day ?? 0
+        let daysSinceCleanLastCheckIn = Calendar.current.dateComponents([.day], from: device.lastCheckCleanInDate, to: currentDate).day ?? 0
+        let daysSinceMemoryCleanLastCheckIn = Calendar.current.dateComponents([.day], from: device.lastCheckMemoryCleanInDate, to: currentDate).day ?? 0
         
-        switch model.type {
-        case "laptop":
+        
+        let remainingServiceDays = max(device.serviceDays - daysSinceServiceLastCheckIn, 0)
+        let remainingCleanDays = max(device.cleanDays - daysSinceCleanLastCheckIn, 0)
+        let remainingMemoryCleaningDays = max(device.memoryCleaningDays - daysSinceMemoryCleanLastCheckIn, 0)
+        serviceDaysDataLabel.text = remainingServiceDays == 0 ? "Need!" : "\(remainingServiceDays) days"
+        cleanDaysDataLabel.text = remainingCleanDays == 0 ? "Need!" : "\(remainingCleanDays) days"
+        memoryClearingDataLabel.text = remainingMemoryCleaningDays == 0 ? "Need!" : "\(remainingMemoryCleaningDays) days"
+
+        
+        switch device.type {
+        case "Laptop":
             mainContentView.backgroundColor = .mainGreen
         case "PC":
             mainContentView.backgroundColor = .mainOrange
         default:
             mainContentView.backgroundColor = UIColor.gray
         }
+    }
+
+    
+    func convertDaysToMemoryAndClenText(from days: Int) -> String? {
+        let conversionTable: [Int: String] = [
+            90: "90 days",
+            60: "60 days",
+            30: "30 days",
+            14: "2 weeks",
+            5: "5 days",
+            3: "3 days",
+            1: "every day"
+        ]
+        
+        return conversionTable[days]
+    }
+
+    func convertDaysToServiceText(from days: Int) -> String? {
+        let conversionTable: [Int: String] = [
+            365: "365 days",
+            180: "180 days",
+            90: "90 days",
+            60: "60 days",
+            30: "30 days",
+            14: "2 weeks"
+        ]
+        
+        return conversionTable[days]
     }
 
     func addViews() {

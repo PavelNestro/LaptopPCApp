@@ -6,6 +6,8 @@ protocol WelcomeViewProtocol: AnyObject {
 
 class WelcomeVC: UIViewController {
     
+    let user = User()
+    
     var presenter: WelcomPresenterProtocol!
     
     var rootView: WelcomeView {
@@ -34,6 +36,8 @@ class WelcomeVC: UIViewController {
     
     @objc func skipButtonAction() {
         self.navigationController?.popViewController(animated: true)
+        self.user.name = "Name"
+        RealmManager.shared.saveUser(self.user)
         self.presenter.routeToAddFirstDeviceScreen()
     }
     
@@ -49,6 +53,8 @@ class WelcomeVC: UIViewController {
                            completion: { _ in
                 self.navigationController?.popViewController(animated: true)
                 self.presenter.routeToAddFirstDeviceScreen()
+                self.user.name = self.rootView.nameTextField.textField.text ?? ""
+                RealmManager.shared.saveUser(self.user)
             })
         }
     }

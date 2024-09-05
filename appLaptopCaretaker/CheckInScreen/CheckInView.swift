@@ -8,7 +8,7 @@ class CheckInView: UIView {
         $0.text = "Type of care:"
     }
     
-    let typeOfCareTextField = CustomInputView(placeholder: "Type of care").then {
+    let typeOfCareTextField = CustomTextFiled(placeholder: "Type of care").then {
         $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
     }
     

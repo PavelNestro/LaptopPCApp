@@ -10,7 +10,7 @@ class WelcomeView: UIView {
         $0.text = "Hello!\nEnter your name."
     }
     
-    let nameTextField = CustomInputView(placeholder: "Name")
+    let nameTextField = CustomTextFiled(placeholder: "Name")
     
     let nextButton = CustomButton(title: "Next")
     

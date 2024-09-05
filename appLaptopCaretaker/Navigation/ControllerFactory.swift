@@ -6,9 +6,10 @@ protocol ControllerFactoryProtocol {
     func createMyDevicesVC(coordinator: Coordinator) -> UIViewController
     func createSettingsVC(coordinator: Coordinator) -> UIViewController
     func createAddNewDeviceVC(coordinator: Coordinator) -> UIViewController
-    func createDeviceVC(coordinator: Coordinator) -> UIViewController
-    func createEditVC(coordinator: Coordinator) -> UIViewController
-    func createCheckInVC(coordinator: Coordinator) -> UIViewController
+    func createDeviceVC(coordinator: Coordinator, device: Device) -> UIViewController
+    func createEditVC(coordinator: Coordinator, device: Device) -> UIViewController
+    func createCheckInVC(coordinator: Coordinator, device: Device) -> UIViewController
+    func createEditNameVC(coordinator: Coordinator) -> UIViewController
 }
 
 // MARK: - FACTORY
@@ -63,8 +64,8 @@ final class ControllerFactory: ControllerFactoryProtocol {
         return view
     }
     
-    func createDeviceVC(coordinator: Coordinator) -> UIViewController {
-        let view = DeviceVC()
+    func createDeviceVC(coordinator: Coordinator, device: Device) -> UIViewController {
+        let view = DeviceVC(device: device)
         let presenter = DevicePresenter(view: view)
         presenter.coordinator = coordinator
 
@@ -73,8 +74,8 @@ final class ControllerFactory: ControllerFactoryProtocol {
         return view
     }
     
-    func createEditVC(coordinator: Coordinator) -> UIViewController {
-        let view = EditVC()
+    func createEditVC(coordinator: Coordinator, device: Device) -> UIViewController {
+        let view = EditVC(device: device)
         let presenter = EditPresenter(view: view)
         presenter.coordinator = coordinator
 
@@ -83,9 +84,19 @@ final class ControllerFactory: ControllerFactoryProtocol {
         return view
     }
     
-    func createCheckInVC(coordinator: Coordinator) -> UIViewController {
-        let view = CheckInCV()
+    func createCheckInVC(coordinator: Coordinator, device: Device) -> UIViewController {
+        let view = CheckInCV(device: device)
         let presenter = CheckInPresenter(view: view)
+        presenter.coordinator = coordinator
+
+        view.presenter = presenter
+        
+        return view
+    }
+    
+    func createEditNameVC(coordinator: Coordinator) -> UIViewController {
+        let view = EditNameVC()
+        let presenter = EditNamePresenter(view: view)
         presenter.coordinator = coordinator
 
         view.presenter = presenter

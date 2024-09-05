@@ -9,23 +9,23 @@ class EditView: UIView, UIGestureRecognizerDelegate {
     
     let contentView = UIView()
     
-    let typeTextField = CustomInputView(placeholder: "Type").then {
+    let typeTextField = CustomTextFiled(placeholder: "Type").then {
         $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
     }
     
-    let deviceNameTextField = CustomInputView(placeholder: "Device Name")
+    let deviceNameTextField = CustomTextFiled(placeholder: "Device Name")
 
-    let modelTextField = CustomInputView(placeholder: "Model")
+    let modelTextField = CustomTextFiled(placeholder: "Model")
     
-    let releaseDateTextField = CustomInputView(placeholder: "Release Date").then {
+    let releaseDateTextField = CustomTextFiled(placeholder: "Release Date").then {
         $0.configureTextFieldLeftView(image: UIImage(systemName: "calendar"))
     }
     
-    let deviceNumberTextField = CustomInputView(placeholder: "Device number (e.g for office, etc)")
+    let deviceNumberTextField = CustomTextFiled(placeholder: "Device number (e.g for office, etc)")
     
-    let characteristicsTextField = CustomInputView(placeholder: "Characteristics")
+    let characteristicsTextField = CustomTextFiled(placeholder: "Characteristics")
     
-    let noteTextField = CustomInputView(placeholder: "Note")
+    let noteTextField = CustomTextFiled(placeholder: "Note")
     
     let photoPCImageView = UIImageView().then {
         $0.backgroundColor = .mainGray
@@ -51,7 +51,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         $0.text = "Service"
     }
     
-    let serviceTextField = CustomInputView(placeholder: "Every 365 days").then {
+    let serviceTextField = CustomTextFiled(placeholder: "Every 365 days").then {
         $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
     }
     
@@ -63,7 +63,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         $0.text = "Clean"
     }
     
-    let cleanTextField = CustomInputView(placeholder: "Every 5 days").then {
+    let cleanTextField = CustomTextFiled(placeholder: "Every 5 days").then {
         $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
     }
     
@@ -75,7 +75,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         $0.text = "Memory cleaning"
     }
     
-    let memoryCleaningTextField = CustomInputView(placeholder: "Every 5 days").then {
+    let memoryCleaningTextField = CustomTextFiled(placeholder: "Every 5 days").then {
         $0.configureTextFieldLeftView(image: UIImage(systemName: "chevron.down"))
     }
     
@@ -163,7 +163,7 @@ class EditView: UIView, UIGestureRecognizerDelegate {
         characteristicsTextField.snp.makeConstraints {
             $0.top.equalTo(deviceNumberTextField.snp.bottom).offset(26)
             $0.left.right.equalToSuperview().inset(16)
-            $0.height.equalTo(90)
+            $0.height.equalTo(44)
         }
         
         noteTextField.snp.makeConstraints {

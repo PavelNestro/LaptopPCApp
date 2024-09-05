@@ -1,9 +1,11 @@
 import UIKit
 
+//MARK: - UIImagePickerControllerDelegate
 extension EditVC: UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[.originalImage] as? UIImage {
+            self.selectedImage = selectedImage
             rootView.photoPCImageView.image = selectedImage
             rootView.photoPCImageView.contentMode = .scaleAspectFill
         }
@@ -15,6 +17,8 @@ extension EditVC: UIImagePickerControllerDelegate {
     }
 }
 
+
+//MARK: - extension EditVC
 extension EditVC {
     @objc func typeTextFieldTapped() {
         let alertController = UIAlertController(title: "Select Device Type", message: nil, preferredStyle: .actionSheet)
@@ -31,6 +35,21 @@ extension EditVC {
         
         alertController.addAction(laptopAction)
         alertController.addAction(pcAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func deleteDeviceAlert() {
+        let alertController = UIAlertController(title: "Delete device?", message: nil, preferredStyle: .alert)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .default) { _ in
+            RealmManager.shared.deleteDevice(self.device)
+            self.presenter.toMyDevicesScreen()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(deleteAction)
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
@@ -170,5 +189,59 @@ extension EditVC {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    func convertClenaAndMemoryToDays(from text: String) -> Int? {
+        let conversionTable: [String: Int] = [
+            "90 days": 90,
+            "60 days": 60,
+            "30 days": 30,
+            "2 weeks": 14,
+            "5 days": 5,
+            "3 days": 3,
+            "every day": 1
+        ]
+        
+        return conversionTable[text]
+    }
+    
+    func convertServiceToDays(from text: String) -> Int? {
+        let conversionTable: [String: Int] = [
+            "365 days": 365,
+            "180 days": 180,
+            "90 days": 90,
+            "60 days": 60,
+            "30 days": 30,
+            "2 weeks": 14
+        ]
+        
+        return conversionTable[text]
+    }
+    
+    func convertDaysToMemoryCleanText(from days: Int) -> String? {
+        let conversionTable: [Int: String] = [
+            90: "90 days",
+            60: "60 days",
+            30: "30 days",
+            14: "2 weeks",
+            5: "5 days",
+            3: "3 days",
+            1: "every day"
+        ]
+        
+        return conversionTable[days]
+    }
+
+    func convertDaysToServiceText(from days: Int) -> String? {
+        let conversionTable: [Int: String] = [
+            365: "365 days",
+            180: "180 days",
+            90: "90 days",
+            60: "60 days",
+            30: "30 days",
+            14: "2 weeks"
+        ]
+        
+        return conversionTable[days]
     }
 }

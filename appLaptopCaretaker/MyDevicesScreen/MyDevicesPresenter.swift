@@ -4,7 +4,7 @@ protocol MyDevicesProtocol {
     func getTest()
     func toSettingsScreen()
     func toAddNewDeviceScreen()
-    func toDeviceScreen()
+    func toDeviceScreen(with device: Device)
 }
 
 class MyDevicesPresenter {
@@ -19,9 +19,9 @@ class MyDevicesPresenter {
     
 }
 
-extension MyDevicesPresenter: MyDevicesProtocol {
-    func toDeviceScreen() {
-        coordinator.routeDeviceScreen()
+extension MyDevicesPresenter: MyDevicesProtocol {    
+    func toDeviceScreen(with device: Device) {
+        coordinator.routeDeviceScreen(device: device)
     }
     
     func toAddNewDeviceScreen() {

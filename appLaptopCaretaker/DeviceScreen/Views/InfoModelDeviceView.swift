@@ -87,6 +87,7 @@ class InfoModelDeviceView: UIView {
         $0.textColor = .black
         $0.font = .systemFont(ofSize: 17, weight: .light)
         $0.textAlignment = .left
+        $0.text = "You can add a note"
     }
     
     //MARK: - init
@@ -109,12 +110,14 @@ class InfoModelDeviceView: UIView {
         
     //MARK: - public methods
     
-    func configure() {
-        modelDataLabel.text = "MacBook Pro 16’ M2 8 RAM 512GB"
-        realeseDataLabel.text = "20.09.2023"
-        deviceNumberDataLabel.text = "5"
-        characteristicsDataLabel.text = "512 GB \n16’’ \n8 GM RAM \nM2 Max"
-        noteDataLabel.text = "Some text \nNew Model"
+    func configure(with device: Device) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        modelDataLabel.text = device.deviceModel
+        realeseDataLabel.text = dateFormatter.string(from: device.releaseDate ?? Date())
+        deviceNumberDataLabel.text = device.deviceNumber
+        characteristicsDataLabel.text = device.characteristics.isEmpty == true ? "Characteristics" : device.characteristics
+        noteDataLabel.text = device.note.isEmpty == true ? "Note" : device.note
     }
 
     func addViews() {
@@ -135,7 +138,7 @@ class InfoModelDeviceView: UIView {
         }
         
         modelDataLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(20)
+            $0.centerY.equalTo(modelLabel.snp.centerY)
             $0.trailing.equalToSuperview().inset(20)
         }
         
@@ -145,7 +148,7 @@ class InfoModelDeviceView: UIView {
         }
         
         realeseDataLabel.snp.makeConstraints {
-            $0.top.equalTo(modelDataLabel.snp.bottom).offset(15)
+            $0.centerY.equalTo(realese.snp.centerY)
             $0.trailing.equalToSuperview().inset(20)
         }
         
@@ -155,7 +158,7 @@ class InfoModelDeviceView: UIView {
         }
         
         deviceNumberDataLabel.snp.makeConstraints {
-            $0.top.equalTo(realeseDataLabel.snp.bottom).offset(15)
+            $0.centerY.equalTo(deviceNumber.snp.centerY)
             $0.trailing.equalToSuperview().inset(20)
         }
         

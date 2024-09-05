@@ -6,6 +6,8 @@ protocol AddFirstDeviceViewProtocol: AnyObject {
 
 class AddFirstDeviceVC: UIViewController {
     
+    let device = Device()
+    
     var presenter: AddFirstDeviceProtocol!
     
     var rootView: AddFirstDeviceView {
@@ -20,7 +22,15 @@ class AddFirstDeviceVC: UIViewController {
         super.viewDidLoad()
         addTargets()
         setupNavBar()
-        rootView.addFirstDeviceLabel.text = "Good, Name!\nLet's add your first device."
+        configureName()
+    }
+    
+    func configureName() {
+        if let existingUser = RealmManager.shared.getUser() {
+            rootView.addFirstDeviceLabel.text = "Good, \(existingUser.name)!\nLet's add your first device."
+        } else {
+            rootView.addFirstDeviceLabel.text = "Good, Name!\nLet's add your first device."
+        }
     }
     
     func addTargets() {
@@ -32,6 +42,8 @@ class AddFirstDeviceVC: UIViewController {
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         
         rootView.releaseDateTextField.textField.inputView = datePicker
+        
+        rootView.doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
     }
     
     private func setupNavBar() {
@@ -50,10 +62,12 @@ class AddFirstDeviceVC: UIViewController {
         
         let laptopAction = UIAlertAction(title: "Laptop", style: .default) { _ in
             self.rootView.typeTextField.textField.text = "Laptop"
+            self.device.type = "Laptop"
         }
         
         let pcAction = UIAlertAction(title: "PC", style: .default) { _ in
             self.rootView.typeTextField.textField.text = "PC"
+            self.device.type = "PC"
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -69,6 +83,39 @@ class AddFirstDeviceVC: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
         rootView.releaseDateTextField.textField.text = dateFormatter.string(from: sender.date)
+        self.device.releaseDate = sender.date
+    }
+    
+    @objc private func doneButtonAction() {
+        let typeText = rootView.typeTextField.textField.text ?? ""
+        let deviceNameText = rootView.deviceNameTextField.textField.text ?? ""
+
+        if typeText.isEmpty {
+            rootView.typeTextField.textField.setPlaceholder("Type is required", color: .red)
+        } else {
+            rootView.typeTextField.textField.setPlaceholder("Type", color: .systemGray)
+        }
+
+        if deviceNameText.isEmpty {
+            rootView.deviceNameTextField.textField.setPlaceholder("Device Name is required", color: .red)
+        } else {
+            rootView.deviceNameTextField.textField.setPlaceholder("Device Name", color: .systemGray)
+        }
+
+        if typeText.isEmpty || deviceNameText.isEmpty {
+            return
+        }
+        
+        device.deviceModel = rootView.modelTextField.textField.text ?? ""
+        device.deviceNumber = rootView.deviceNumberTextField.textField.text ?? ""
+        device.characteristics = rootView.characteristicsTextField.textField.text ?? ""
+        
+        if let existingUser = RealmManager.shared.getUser() {
+            RealmManager.shared.saveDevice(device, to: existingUser)
+        }
+        
+        presenter.routeToMyDevicesScreen()
+        
     }
     
 }

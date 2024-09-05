@@ -6,10 +6,23 @@ protocol EditViewProtocol: AnyObject {
 
 class EditVC: UIViewController, UINavigationControllerDelegate {
     
+    let device: Device
+    
+    var selectedImage: UIImage?
+    
     var presenter: EditPresenter!
     
     var rootView: EditView {
         self.view as! EditView
+    }
+    
+    init(device: Device) {
+        self.device = device
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
@@ -20,7 +33,46 @@ class EditVC: UIViewController, UINavigationControllerDelegate {
         super.viewDidLoad()
         setupNavBar()
         addTargets()
+        setupUI()
     }
+    
+    func setupUI() {
+        rootView.typeTextField.textField.text = device.type
+        rootView.deviceNameTextField.textField.text = device.deviceName
+        rootView.modelTextField.textField.text = device.deviceModel
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        rootView.releaseDateTextField.textField.text = dateFormatter.string(from: device.releaseDate ?? Date())
+        
+        rootView.deviceNumberTextField.textField.text = device.deviceNumber
+        rootView.characteristicsTextField.textField.text = device.characteristics
+        rootView.noteTextField.textField.text = device.note
+        
+        if let imageData = device.imageDeviceData, let image = UIImage(data: imageData) {
+            rootView.photoPCImageView.contentMode = .scaleAspectFill
+            rootView.photoPCImageView.image = image
+        }
+        
+        if let serviceText = convertDaysToServiceText(from: device.serviceDays) {
+            rootView.serviceTextField.textField.text = serviceText
+        } else {
+            rootView.serviceTextField.textField.text = "\(device.serviceDays) days"
+        }
+        
+        if let cleanText = convertDaysToMemoryCleanText(from: device.cleanDays) {
+            rootView.cleanTextField.textField.text = cleanText
+        } else {
+            rootView.cleanTextField.textField.text = "\(device.cleanDays) days"
+        }
+        
+        if let memoryCleaningText = convertDaysToMemoryCleanText(from: device.memoryCleaningDays) {
+            rootView.memoryCleaningTextField.textField.text = memoryCleaningText
+        } else {
+            rootView.memoryCleaningTextField.textField.text = "\(device.memoryCleaningDays) days"
+        }
+    }
+
     
     func addTargets() {
         let imageTapGesture = UITapGestureRecognizer(target: self, action: #selector(buttonTapped(_:)))
@@ -44,6 +96,8 @@ class EditVC: UIViewController, UINavigationControllerDelegate {
         datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
         
         rootView.releaseDateTextField.textField.inputView = datePicker
+        
+        rootView.saveButton.addTarget(self, action: #selector(saveButtonAction), for: .touchUpInside)
     }
     
     private func openImagePicker() {
@@ -74,8 +128,70 @@ class EditVC: UIViewController, UINavigationControllerDelegate {
         self.navigationItem.rightBarButtonItem = settingsButton
     }
     
+    @objc func saveButtonAction() {
+        var updatedValues: [String: Any] = [:]
+
+        if let type = rootView.typeTextField.textField.text {
+            updatedValues["type"] = type
+        }
+        
+        if let deviceName = rootView.deviceNameTextField.textField.text {
+            updatedValues["deviceName"] = deviceName
+        }
+        
+        if let deviceModel = rootView.modelTextField.textField.text {
+            updatedValues["deviceModel"] = deviceModel
+        }
+        
+        if let deviceNumber = rootView.deviceNumberTextField.textField.text {
+            updatedValues["deviceNumber"] = deviceNumber
+        }
+        
+        if let characteristics = rootView.characteristicsTextField.textField.text {
+            updatedValues["characteristics"] = characteristics
+        }
+        
+        if let note = rootView.noteTextField.textField.text {
+            updatedValues["note"] = note
+        }
+        
+        if let serviceDaysText = rootView.serviceTextField.textField.text,
+           let serviceDays = convertServiceToDays(from: serviceDaysText) {
+            updatedValues["serviceDays"] = serviceDays
+        }
+        
+        if let cleanDaysText = rootView.cleanTextField.textField.text,
+           let cleanDays = convertClenaAndMemoryToDays(from: cleanDaysText) {
+            updatedValues["cleanDays"] = cleanDays
+        }
+        
+        if let memoryCleaningDaysText = rootView.memoryCleaningTextField.textField.text,
+           let memoryCleaningDays = convertClenaAndMemoryToDays(from: memoryCleaningDaysText) {
+            updatedValues["memoryCleaningDays"] = memoryCleaningDays
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        
+        if let releaseDateText = rootView.releaseDateTextField.textField.text,
+           let releaseDate = dateFormatter.date(from: releaseDateText) {
+            updatedValues["releaseDate"] = releaseDate
+        }
+        
+        if let selectedImage = self.selectedImage,
+           let imageData = selectedImage.pngData() {
+            updatedValues["imageDeviceData"] = imageData
+        }
+        
+        RealmManager.shared.updateDevice(device, withValues: updatedValues)
+        
+        print("Device updated with values: \(updatedValues)")
+        navigationController?.popViewController(animated: true)
+    }
+
+    
     @objc func deleteButtonAction() {
-        print("editButton")
+        deleteDeviceAlert()
     }
 }
 
