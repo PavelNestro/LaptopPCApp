@@ -106,6 +106,7 @@ class AddFirstDeviceVC: UIViewController {
             return
         }
         
+        device.deviceName = deviceNameText
         device.deviceModel = rootView.modelTextField.textField.text ?? ""
         device.deviceNumber = rootView.deviceNumberTextField.textField.text ?? ""
         device.characteristics = rootView.characteristicsTextField.textField.text ?? ""
