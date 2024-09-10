@@ -196,15 +196,11 @@ class MyDeviceViewCell: UITableViewCell {
             $0.trailing.equalToSuperview().inset(20)
         }
     }
-}
-
-private extension MyDeviceViewCell {
-    enum Constants {
-        static let iconImage: UIImage = UIImage(systemName: "square.stack") ?? UIImage()
-        static let priceLabel: String = "Стоимость"
-        static let minCoverageLabel: String = "Мин. охват"
-        static let maxCoverageLabel: String = "Макс. охват"
-        static let garantCoverageLabel: String = "Гарант. охват"
-        static let caseFailureLabel: String = "В случае невыполнения"
+    
+    override func prepareForReuse() {
+        nameLabel.text = nil
+        serviceDaysDataLabel.text = nil
+        cleanDaysDataLabel.text = nil
+        memoryClearingDataLabel.text = nil
     }
 }
